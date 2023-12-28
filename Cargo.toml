@@ -1,32 +1,32 @@
 [package]
-name = "realm"
-version = "2.5.1"
+name = "xtunnel"
+version = "0.1.0"
 authors = ["zhboner <zhboner@gmail.com>"]
 edition = "2021"
 
 
 [workspace]
 members = [
-    "realm_io",
-    "realm_lb",
-    "realm_core",
-    "realm_hook",
-    "realm_syscall"
+    "xtunnel_io",
+    "xtunnel_lb",
+    "xtunnel_core",
+    "xtunnel_hook",
+    "xtunnel_syscall"
 ]
 
 
 [lib]
-name = "realm"
+name = "xtunnel"
 path = "src/lib.rs"
 
 [[bin]]
-name = "realm"
+name = "xtunnel"
 path = "src/bin.rs"
 
 
 [dependencies]
-# realm
-realm_core = { path = "realm_core" }
+# xtunnel
+xtunnel_core = { path = "xtunnel_core" }
 
 # common
 cfg-if = "1"
@@ -61,11 +61,11 @@ tokio = { version = "1", features = ["macros"] }
 
 [features]
 default = ["proxy", "balance", "multi-thread", "transport", "brutal-shutdown"]
-hook = ["realm_core/hook"]
-proxy = ["realm_core/proxy"]
-brutal-shutdown = ["realm_core/brutal-shutdown"]
-balance = ["realm_core/balance"]
-transport = ["realm_core/transport", "realm_core/transport-boost"]
+hook = ["xtunnel_core/hook"]
+proxy = ["xtunnel_core/proxy"]
+brutal-shutdown = ["xtunnel_core/brutal-shutdown"]
+balance = ["xtunnel_core/balance"]
+transport = ["xtunnel_core/transport", "xtunnel_core/transport-boost"]
 multi-thread = ["tokio/rt-multi-thread"]
 jemalloc = ["jemallocator"]
 mi-malloc = ["mimalloc"]

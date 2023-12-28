@@ -46,14 +46,14 @@ jobs:
         if: "!contains(matrix.target, 'windows')"
         uses: actions/upload-artifact@v3
         with:
-          name: realm-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/realm
+          name: xtunnel-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/xtunnel
       - name: upload windows binary
         if: "contains(matrix.target, 'windows')"
         uses: actions/upload-artifact@v3
         with:
-          name: realm-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/realm.exe
+          name: xtunnel-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/xtunnel.exe
   build-windows:
     runs-on: windows-latest
     strategy:
@@ -72,8 +72,8 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v3
         with:
-          name: realm-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/realm.exe
+          name: xtunnel-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/xtunnel.exe
   build-apple:
     runs-on: macos-latest
     strategy:
@@ -94,5 +94,5 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v3
         with:
-          name: realm-${{ matrix.target }}
-          path: target/${{ matrix.target }}/release/realm
+          name: xtunnel-${{ matrix.target }}
+          path: target/${{ matrix.target }}/release/xtunnel

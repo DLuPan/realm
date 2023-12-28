@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 
 use super::{FullConf, EndpointConf};
 
-// from https://github.com/zhboner/realm/blob/8ad8f0405e97cc470ba8b76c059c203b7381d2fb/src/lib.rs#L58-L63
+// from https://github.com/zhboner/xtunnel/blob/8ad8f0405e97cc470ba8b76c059c203b7381d2fb/src/lib.rs#L58-L63
 // pub struct ConfigFile {
 //     pub listening_addresses: Vec<String>,
 //     pub listening_ports: Vec<String>,

@@ -1,13 +1,13 @@
 use serde::{Serialize, Deserialize};
 use std::net::{IpAddr, SocketAddr, ToSocketAddrs};
 
-use realm_core::endpoint::{Endpoint, RemoteAddr};
+use xtunnel_core::endpoint::{Endpoint, RemoteAddr};
 
 #[cfg(feature = "balance")]
-use realm_core::balance::Balancer;
+use xtunnel_core::balance::Balancer;
 
 #[cfg(feature = "transport")]
-use realm_core::kaminari::mix::{MixAccept, MixConnect};
+use xtunnel_core::kaminari::mix::{MixAccept, MixConnect};
 
 use super::{Config, NetConf, NetInfo};
 
@@ -99,10 +99,10 @@ impl EndpointConf {
 
     #[cfg(feature = "transport")]
     fn build_transport(&self) -> Option<(MixAccept, MixConnect)> {
-        use realm_core::kaminari::mix::{MixClientConf, MixServerConf};
-        use realm_core::kaminari::opt::get_ws_conf;
-        use realm_core::kaminari::opt::get_tls_client_conf;
-        use realm_core::kaminari::opt::get_tls_server_conf;
+        use xtunnel_core::kaminari::mix::{MixClientConf, MixServerConf};
+        use xtunnel_core::kaminari::opt::get_ws_conf;
+        use xtunnel_core::kaminari::opt::get_tls_client_conf;
+        use xtunnel_core::kaminari::opt::get_tls_server_conf;
 
         let Self {
             listen_transport,

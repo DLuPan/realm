@@ -1,9 +1,9 @@
 use std::env;
 use cfg_if::cfg_if;
 
-use realm::cmd;
-use realm::conf::{Config, FullConf, LogConf, DnsConf, EndpointInfo};
-use realm::ENV_CONFIG;
+use xtunnel::cmd;
+use xtunnel::conf::{Config, FullConf, LogConf, DnsConf, EndpointInfo};
+use xtunnel::ENV_CONFIG;
 
 cfg_if! {
     if #[cfg(feature = "mi-malloc")] {
@@ -92,7 +92,7 @@ fn setup_dns(dns: DnsConf) {
     println!("dns: {}", &dns);
 
     let (conf, opts) = dns.build();
-    realm::core::dns::build(conf, opts);
+    xtunnel::core::dns::build(conf, opts);
 }
 
 fn execute(eps: Vec<EndpointInfo>) {
@@ -116,8 +116,8 @@ fn execute(eps: Vec<EndpointInfo>) {
 }
 
 async fn run(endpoints: Vec<EndpointInfo>) {
-    use realm::core::tcp::run_tcp;
-    use realm::core::udp::run_udp;
+    use xtunnel::core::tcp::run_tcp;
+    use xtunnel::core::udp::run_udp;
     use futures::future::join_all;
 
     let mut workers = Vec::with_capacity(2 * endpoints.len());

@@ -24,6 +24,6 @@ jobs:
         with:
             toolchain: nightly
       - name: test core
-        run: cargo test -p realm_core -v --no-fail-fast --features proxy
+        run: cargo test -p xtunnel_core -v --no-fail-fast --features proxy
       - name: test binary
         run: cargo test -v --no-fail-fast

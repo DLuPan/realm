@@ -2,7 +2,7 @@ use std::fmt::{Formatter, Display};
 use std::net::ToSocketAddrs;
 
 use serde::{Serialize, Deserialize};
-use realm_core::dns::config;
+use xtunnel_core::dns::config;
 use config::{LookupIpStrategy, NameServerConfig, Protocol};
 use config::{ResolverConfig, ResolverOpts};
 
@@ -250,7 +250,7 @@ impl Config for DnsConf {
                 .map(|x| x.to_socket_addrs().unwrap().next().unwrap())
                 .collect(),
             None => {
-                use realm_core::dns::DnsConf as TrustDnsConf;
+                use xtunnel_core::dns::DnsConf as TrustDnsConf;
                 let TrustDnsConf { conf, .. } = TrustDnsConf::default();
                 let mut addrs: Vec<std::net::SocketAddr> = conf.name_servers().iter().map(|x| x.socket_addr).collect();
                 addrs.dedup();

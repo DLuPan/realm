@@ -1,0 +1,18 @@
+[package]
+name = "xtunnel_syscall"
+version = "0.1.8"
+authors = ["zephyr <i@zephyr.moe>"]
+description = "xtunnel's convenient syscall collections."
+repository = "https://github.com/zhboner/xtunnel"
+readme = "README.md"
+documentation = "https://docs.rs/xtunnel_syscall"
+keywords = ["network", "syscall"]
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+libc = "0.2"
+socket2 = "0.5"
+
+[target.'cfg(unix)'.dependencies]
+daemonize = "0.5"

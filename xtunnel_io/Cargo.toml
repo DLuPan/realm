@@ -1,0 +1,23 @@
+[package]
+name = "xtunnel_io"
+version = "0.4.0"
+authors = ["zephyr <i@zephyr.moe>"]
+description = "xtunnel's high performance IO collections."
+readme = "README.md"
+documentation = "https://docs.rs/xtunnel_io"
+keywords = ["network", "zero-copy", "relay"]
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+libc = "0.2"
+tokio = "1.9"
+
+[target.'cfg(unix)'.dependencies]
+tokio = { version = "1.9", features = ["net"] }
+
+[features]
+default = []
+brutal-shutdown = []
+peek = []
+statistic = []

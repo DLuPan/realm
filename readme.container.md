@@ -1,6 +1,6 @@
-# Use realm in container
+# Use xtunnel in container
 
-We push the OCI-based image to [Github Container Registry](https://ghcr.io) with name: `ghcr.io/zhboner/realm`.
+We push the OCI-based image to [Github Container Registry](https://ghcr.io) with name: `ghcr.io/zhboner/xtunnel`.
 
 These are some tag of this image:
 
@@ -10,50 +10,50 @@ These are some tag of this image:
 ## Docker
 
 ```bash
-docker run -d -p 9000:9000 ghcr.io/zhboner/realm:latest -l 0.0.0.0:9000 -r 192.168.233.2:9000
+docker run -d -p 9000:9000 ghcr.io/zhboner/xtunnel:latest -l 0.0.0.0:9000 -r 192.168.233.2:9000
 ```
 
 ## Docker Swarm (Docker Compose)
 
 ```yaml
-# ./realm.yml
+# ./xtunnel.yml
 version: '3'
 services:
   port-9000:
-    image: ghcr.io/zhboner/realm:latest
+    image: ghcr.io/zhboner/xtunnel:latest
     ports:
       - 9000:9000
     command: -l 0.0.0.0:9000 -r 192.168.233.2:9000
 ```
 
 ```bash
-docker-compose -f ./realm.yml -p realm up -d
+docker-compose -f ./xtunnel.yml -p xtunnel up -d
 ```
 
 ## Kubernetes
 
 ```yaml
-# ./realm.yml
+# ./xtunnel.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: realm-demo-deployment
+  name: xtunnel-demo-deployment
   labels:
-    app: realm
+    app: xtunnel
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: realm 
+      app: xtunnel 
   template:
     metadata:
       labels:
-        app: realm 
+        app: xtunnel 
     spec:
       containers:
-      - name: realm
-        image: ghcr.io/zhboner/realm:latest
+      - name: xtunnel
+        image: ghcr.io/zhboner/xtunnel:latest
         args:
           - "-l=0.0.0.0:9000"
           - "-r=192.168.233.2:9000"
@@ -70,12 +70,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: realm-lb
+  name: xtunnel-lb
   namespace: default
 spec:
   type: LoadBalancer
   selector:
-    app: realm
+    app: xtunnel
   ports:
     - name: edge
       port: 9000

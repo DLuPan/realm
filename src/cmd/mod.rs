@@ -1,7 +1,7 @@
 use clap::{Command, ArgMatches};
 
-use realm_core::realm_io;
-use realm_core::realm_syscall;
+use xtunnel_core::xtunnel_io;
+use xtunnel_core::xtunnel_syscall;
 
 use crate::conf::CmdOverride;
 use crate::conf::EndpointConf;
@@ -22,7 +22,7 @@ pub enum CmdInput {
 
 pub fn scan() -> CmdInput {
     let version = format!("{} {}", VERSION, FEATURES);
-    let app = Command::new("Realm")
+    let app = Command::new("xtunnel")
         .about("A high efficiency relay tool")
         .version(version.as_str());
 
@@ -31,7 +31,7 @@ pub fn scan() -> CmdInput {
         .disable_help_subcommand(true)
         .disable_version_flag(true)
         .arg_required_else_help(true)
-        .override_usage("realm [FLAGS] [OPTIONS]");
+        .override_usage("xtunnel [FLAGS] [OPTIONS]");
 
     let app = flag::add_all(app);
     let app = sub::add_all(app);
@@ -66,14 +66,14 @@ pub fn scan() -> CmdInput {
 fn handle_matches(matches: ArgMatches) -> CmdInput {
     #[cfg(unix)]
     if matches.is_present("daemon") {
-        realm_syscall::daemonize("realm is running in the background");
+        xtunnel_syscall::daemonize("xtunnel is running in the background");
     }
 
     #[cfg(all(unix, not(target_os = "android")))]
     {
-        use realm_syscall::get_nofile_limit;
-        use realm_syscall::set_nofile_limit;
-        use realm_syscall::bump_nofile_limit;
+        use xtunnel_syscall::get_nofile_limit;
+        use xtunnel_syscall::set_nofile_limit;
+        use xtunnel_syscall::bump_nofile_limit;
 
         // set
         if let Some(nofile) = matches.value_of("nofile") {
@@ -94,7 +94,7 @@ fn handle_matches(matches: ArgMatches) -> CmdInput {
 
     #[cfg(target_os = "linux")]
     {
-        use realm_io::set_pipe_size;
+        use xtunnel_io::set_pipe_size;
 
         if let Some(page) = matches.value_of("pipe_page") {
             if let Ok(page) = page.parse::<usize>() {
@@ -106,7 +106,7 @@ fn handle_matches(matches: ArgMatches) -> CmdInput {
 
     #[cfg(feature = "hook")]
     {
-        use realm_core::hook::pre_conn::load_dylib as load_pre_conn;
+        use xtunnel_core::hook::pre_conn::load_dylib as load_pre_conn;
         if let Some(path) = matches.value_of("pre_conn_hook") {
             load_pre_conn(path);
             println!("hook: {}", path);

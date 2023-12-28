@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use realm_core::endpoint::{ConnectOpts, ProxyOpts};
+use xtunnel_core::endpoint::{ConnectOpts, ProxyOpts};
 
 use super::Config;
 use crate::consts::{TCP_TIMEOUT, UDP_TIMEOUT};

@@ -1,23 +1,23 @@
-# Realm
+# xtunnel
 
 A simple, high performance relay server written in rust.
 
-<p><img src="https://raw.githubusercontent.com/zhboner/realm/master/assets/realm.png"/></p>
+<p><img src="https://raw.githubusercontent.com/zhboner/xtunnel/master/assets/xtunnel.png"/></p>
 
-[![realm](https://github.com/zhboner/realm/workflows/ci/badge.svg)](https://github.com/zhboner/realm/actions)
-[![realm](https://github.com/zhboner/realm/workflows/build/badge.svg)](https://github.com/zhboner/realm/actions/workflows/cross_compile.yml)
-[![downloads](https://img.shields.io/github/downloads/zhboner/realm/total?color=green)](https://github.com/zhboner/realm/releases)
-<!-- [中文说明](https://zhb.me/realm) -->
+[![xtunnel](https://github.com/zhboner/xtunnel/workflows/ci/badge.svg)](https://github.com/zhboner/xtunnel/actions)
+[![xtunnel](https://github.com/zhboner/xtunnel/workflows/build/badge.svg)](https://github.com/zhboner/xtunnel/actions/workflows/cross_compile.yml)
+[![downloads](https://img.shields.io/github/downloads/zhboner/xtunnel/total?color=green)](https://github.com/zhboner/xtunnel/releases)
+<!-- [中文说明](https://zhb.me/xtunnel) -->
 
 ## Libs
 
 | lib | doc |
 | ----- | ----- |
-| realm-core | [![crates.io](https://img.shields.io/crates/v/realm_core.svg)](https://crates.io/crates/realm_core) [![Released API docs](https://docs.rs/realm_core/badge.svg)](https://docs.rs/realm_core) |
-| realm-io | [![crates.io](https://img.shields.io/crates/v/realm_io.svg)](https://crates.io/crates/realm_io) [![Released API docs](https://docs.rs/realm_io/badge.svg)](https://docs.rs/realm_io) |
-| realm-lb | [![crates.io](https://img.shields.io/crates/v/realm_lb.svg)](https://crates.io/crates/realm_lb) [![Released API docs](https://docs.rs/realm_lb/badge.svg)](https://docs.rs/realm_lb) |
-| realm-hook | [![crates.io](https://img.shields.io/crates/v/realm_hook.svg)](https://crates.io/crates/realm_hook) [![Released API docs](https://docs.rs/realm_hook/badge.svg)](https://docs.rs/realm_hook)|
-| realm-syscall | [![crates.io](https://img.shields.io/crates/v/realm_syscall.svg)](https://crates.io/crates/realm_syscall) [![Released API docs](https://docs.rs/realm_syscall/badge.svg)](https://docs.rs/realm_syscall) |
+| xtunnel-core | [![crates.io](https://img.shields.io/crates/v/xtunnel_core.svg)](https://crates.io/crates/xtunnel_core) [![Released API docs](https://docs.rs/xtunnel_core/badge.svg)](https://docs.rs/xtunnel_core) |
+| xtunnel-io | [![crates.io](https://img.shields.io/crates/v/xtunnel_io.svg)](https://crates.io/crates/xtunnel_io) [![Released API docs](https://docs.rs/xtunnel_io/badge.svg)](https://docs.rs/xtunnel_io) |
+| xtunnel-lb | [![crates.io](https://img.shields.io/crates/v/xtunnel_lb.svg)](https://crates.io/crates/xtunnel_lb) [![Released API docs](https://docs.rs/xtunnel_lb/badge.svg)](https://docs.rs/xtunnel_lb) |
+| xtunnel-hook | [![crates.io](https://img.shields.io/crates/v/xtunnel_hook.svg)](https://crates.io/crates/xtunnel_hook) [![Released API docs](https://docs.rs/xtunnel_hook/badge.svg)](https://docs.rs/xtunnel_hook)|
+| xtunnel-syscall | [![crates.io](https://img.shields.io/crates/v/xtunnel_syscall.svg)](https://crates.io/crates/xtunnel_syscall) [![Released API docs](https://docs.rs/xtunnel_syscall/badge.svg)](https://docs.rs/xtunnel_syscall) |
 
 ## Features
 
@@ -27,7 +27,7 @@ A simple, high performance relay server written in rust.
 
 ## Container
 
-Realm can be run in a container with OCI (like Docker, Podman, Kubernetes, etc), see guides [here](readme.container.md).
+xtunnel can be run in a container with OCI (like Docker, Podman, Kubernetes, etc), see guides [here](readme.container.md).
 
 ## Build
 
@@ -40,7 +40,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 Clone this repository:
 
 ```shell
-git clone https://github.com/zhboner/realm && cd realm
+git clone https://github.com/zhboner/xtunnel && cd xtunnel
 ```
 
 Build:
@@ -55,7 +55,7 @@ You can also pass `target_cpu=native` to allow more possible optimizations:
 RUSTFLAGS='-C target_cpu=native' cargo build --release
 ```
 
-The `realm` binary will be available in `target/release`.
+The `xtunnel` binary will be available in `target/release`.
 
 ### Build Options
 
@@ -63,8 +63,8 @@ The `realm` binary will be available in `target/release`.
 - ~~tfo: enable tcp-fast-open~~ deprecated.
 - ~~trust-dns: enable trust-dns's async dns resolver~~ builtin.
 - ~~zero-copy: enable zero-copy on linux~~ builtin.
-- brutal-shutdown: see [realm_io/brutal-shutdown](realm_io/README.md#about-brutal-shutdown).
-- hook: see [realm_hook](realm_hook/README.md).
+- brutal-shutdown: see [xtunnel_io/brutal-shutdown](xtunnel_io/README.md#about-brutal-shutdown).
+- hook: see [xtunnel_hook](xtunnel_hook/README.md).
 - proxy: enable proxy-protocol.
 - balance: enable load balance.
 - transport: enable ws/tls/wss.
@@ -101,11 +101,11 @@ Or have a look at [Cross](https://github.com/cross-rs/cross), it makes things ea
 ## Usage
 
 ```shell
-Realm 2.5.0 [proxy][balance][brutal][transport][multi-thread]
+xtunnel 2.5.0 [proxy][balance][brutal][transport][multi-thread]
 A high efficiency relay tool
 
 USAGE:
-    realm [FLAGS] [OPTIONS]
+    xtunnel [FLAGS] [OPTIONS]
 
 FLAGS:
     -h, --help       show help
@@ -161,33 +161,33 @@ SUBCOMMANDS:
 Start from command line arguments:
 
 ```shell
-realm -l 0.0.0.0:5000 -r 1.1.1.1:443
+xtunnel -l 0.0.0.0:5000 -r 1.1.1.1:443
 ```
 
 Start with a config file:
 
 ```shell
 # use toml
-realm -c config.toml
+xtunnel -c config.toml
 
 # use json
-realm -c config.json
+xtunnel -c config.json
 ```
 
 Start with environment variables:
 
 ```shell
-REALM_CONF='{"endpoints":[{"local":"127.0.0.1:5000","remote":"1.1.1.1:443"}]}' realm
+xtunnel_CONF='{"endpoints":[{"local":"127.0.0.1:5000","remote":"1.1.1.1:443"}]}' xtunnel
 
 # or
-export REALM_CONF=`cat config.json | jq -c `
-realm
+export xtunnel_CONF=`cat config.json | jq -c `
+xtunnel
 ```
 
 Convert a legacy config file:
 
 ```shell
-realm convert old.json
+xtunnel convert old.json
 ```
 
 ## Configuration
@@ -197,7 +197,7 @@ TOML Example
 ```toml
 [log]
 level = "warn"
-output = "/var/log/realm.log"
+output = "/var/log/xtunnel.log"
 
 [network]
 no_tcp = false
@@ -221,7 +221,7 @@ remote = "www.google.com:443"
 {
   "log": {
     "level": "warn",
-    "output": "/var/log/realm.log"
+    "output": "/var/log/xtunnel.log"
   },
   "network": {
     "no_tcp": false,
@@ -321,7 +321,7 @@ $strategy: $weight1, $weight2, ...
 
 Where `remote` is used as default backend server, and `extra_remotes` are used as backups.
 
-Available algorithms (provided by [realm_lb](./realm_lb/)):
+Available algorithms (provided by [xtunnel_lb](./xtunnel_lb/)):
 
 - iphash
 
@@ -390,7 +390,7 @@ values:
 
 - stdout
 - stderr
-- path (e.g. `/var/log/realm.log`)
+- path (e.g. `/var/log/xtunnel.log`)
 
 default: stdout
 

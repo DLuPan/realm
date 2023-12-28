@@ -1,0 +1,14 @@
+[package]
+name = "xtunnel_lb"
+version = "0.1.0"
+authors = ["zephyr <i@zephyr.moe>"]
+description = "xtunnel's flexible hooks."
+repository = "https://github.com/zhboner/xtunnel"
+readme = "README.md"
+documentation = "https://docs.rs/xtunnel_lb"
+keywords = ["lb", "balance", "network"]
+edition = "2021"
+license = "MIT"
+
+[dev-dependencies]
+average = "0.13"
